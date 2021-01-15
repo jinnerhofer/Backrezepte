@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<buchungen>
+	<buchung1>
+		<buchungvon="2021-11-11"bis="2021-11-13">
+			<name>Daniela Dose</name>
+			<zimmer>123</zimmer>
+			<personen>
+				<erwachsene>2</erwachsene>
+				<kinder>3</kinder>
+			</personen>
+			<sonstiges>Bitte inkl. Internetzugang</sonstiges>
+		</buchung>
+	</buchung1>
+	<buchung2>
+		<buchungvon="2021-12-14"bis="2021-12-23">
+			<name>Daniela Dose</name>
+			<zimmer>123</zimmer>
+			<personen>
+				<erwachsene>2</erwachsene>
+				<kinder>0</kinder>
+			</personen>
+			<sonstiges></sonstiges>
+		</buchung>
+	</buchung2>
+</buchungen>
