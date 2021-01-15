@@ -10,6 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel>
+            <Button Content="Rezepte anzeigen" Command="{Binding GeheZuRezepteListCommand}" />
             <TextBlock Margin="10, 30" FontSize="25" FontWeight="Bold" TextAlignment="Center" Text="Backrezepte von Johanna"/>
 
             <Grid>

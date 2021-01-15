@@ -115,6 +115,22 @@ namespace Backrezepte.Core.ViewModels
 
         #endregion
 
+        #region Prop: GeheZuRezepteList
+        private MvxCommand _geheZuRezepteListCommand = null;
+
+        public MvxCommand GeheZuRezepteListCommand
+        {
+            get
+            {
+                return _geheZuRezepteListCommand ??
+                    (_geheZuRezepteListCommand = new MvxCommand(() =>
+                    {
+                        this._navigationService.Navigate<LogginViewModel>();
+                    }));
+            }
+        }
+        #endregion
+
         #region Prop: LoginCommand
         private MvxCommand _loginCommand = null;
 
@@ -122,13 +138,17 @@ namespace Backrezepte.Core.ViewModels
         {
             get
             {
-                return _loginCommand ??
-                    (_loginCommand = new MvxCommand(() =>
-                    {
-                        this._navigationService.Navigate<LogginViewModel>();
-                    }));
-            }
+                return _loginCommand ?? (_loginCommand = new MvxCommand(GenerateRezept, CanGenerateRezept));
+             }
         }
+        private bool CanGenerateRezept()
+        {
+            return this.Rezeptname?.Length > 0;
+            RezeptItem rzt = new RezeptItem();
+            rzt.Rezeptname = this.Rezeptname;
+            this._rezeptDatenService.Add(rzt);
+        }
+
         #endregion
     }
 }
