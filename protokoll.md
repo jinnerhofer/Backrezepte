@@ -21,3 +21,14 @@ Uebung 2
 Uebung 3
 <img src="jinnerhofer_ueb3.jpg">
 
+Arbeitsauftrag für 2020-12-18
+	-Wiederholung XML
+
+Arbeitsauftrag 2020-01-14/15
+	-Daten speichern und auslesen
+
+Arbeitsauftrag für 2021-01-21/22
+	-XML speichern und lesen
+
+
+
