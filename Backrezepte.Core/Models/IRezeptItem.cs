@@ -6,9 +6,10 @@ namespace Backrezepte.Core.Models
 {
     public interface IRezeptItem
     {
-        public string Rezeptname { get; set; }
+        string RezeptId { get; set; }
+        string Rezeptname { get; set; }
 
-        public string Rezeptanleitung { get; set; }
+        string Rezeptanleitung { get; set; }
 
         List<Zutaten> All();
     }

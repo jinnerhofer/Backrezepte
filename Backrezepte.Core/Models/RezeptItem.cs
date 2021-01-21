@@ -6,6 +6,7 @@ namespace Backrezepte.Core.Models
 {
     public class RezeptItem : IRezeptItem
     {
+        public string RezeptId { get; set; } = Guid.NewGuid().ToString();
         public string Rezeptname { get ; set; }
         public string Rezeptanleitung { get; set; }
 

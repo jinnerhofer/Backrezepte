@@ -7,19 +7,19 @@ namespace Backrezepte.Core.Services
 {
     public class RezeptDatenService : IRezeptDatenService
     {
-        protected List<IRezeptDatenService> _rezepte = new List<IRezeptDatenService>();
-        public bool Add(IRezeptDatenService rezept)
+        protected List<IRezeptItem> _rezepte = new List<IRezeptItem>();
+        public bool Add(IRezeptItem rezept)
         {
             this._rezepte.Add(rezept);
             return true;
         }
 
-        public List<IRezeptDatenService> All()
+        public List<IRezeptItem> All()
         {
             return this._rezepte;
         }
 
-        public bool Delete(IRezeptDatenService rezept)
+        public bool Delete(IRezeptItem rezept)
         {
             return this._rezepte.Remove(rezept);
         }
