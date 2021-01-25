@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Backrezepte.Core.Services
 {
-    public class RezeptDatenService : IRezeptDatenService
+    public class RezeptDatenService : IRezeptService
     {
         protected List<IRezeptItem> _rezepte = new List<IRezeptItem>();
         public bool Add(IRezeptItem rezept)

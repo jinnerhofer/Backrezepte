@@ -9,83 +9,66 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <StackPanel>
-            <Button Content="Rezepte anzeigen" Command="{Binding GeheZuRezepteListCommand}" />
-            <TextBlock Margin="10, 30" FontSize="25" FontWeight="Bold" TextAlignment="Center" Text="Backrezepte von Johanna"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+        <Button Grid.Row="0" Grid.ColumnSpan="2" Content="Rezepte anzeigen" Command="{Binding GeheZuRezepteListCommand}" />
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Margin="0,20" VerticalAlignment="Center" FontSize="25" FontWeight="Bold" TextAlignment="Center" Text="Backrezepte von Johanna"/>
+        
+        <TextBlock Margin="10, 0" FontSize="15" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Text="Rezeptname: "/>
+        
+        <TextBox Grid.Row="3" Grid.Column="0" Text="{Binding Rezeptname, UpdateSourceTrigger=PropertyChanged}" Margin="10, 5" />
+        <syncfusion:SfRating Grid.Row="3" Grid.Column="1" Value="{Binding Schwierigkeit, UpdateSourceTrigger=PropertyChanged}" ItemsCount="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0.5"/>
 
-                <TextBlock Margin="10, 0" FontSize="15" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Text="Rezeptname: "/>
-                <StackPanel Grid.Column="0" Grid.Row="1" >
-                    <TextBox Text="{Binding Rezeptname}" Margin="10, 5" />
-                </StackPanel>
-                <StackPanel Grid.Column="1" Grid.Row="1">
-                  <syncfusion:SfRating Value="{Binding Schwierigkeit}" ItemsCount="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0.5"/>
-                </StackPanel>
 
-                <TextBlock Margin="10,5,0,10" FontWeight="Bold" FontSize="15" Grid.Column="0" Grid.Row="2" Text="Zutaten: "/>
-                <StackPanel Grid.Column="0" Grid.Row="3">
-                    <BulletDecorator>
-                        <BulletDecorator.Bullet>
-                            <Ellipse Margin="50, 5" Height="10" Width="10" Fill="Aqua"/>
-                        </BulletDecorator.Bullet>
-                        <TextBlock Text="{Binding Zutatenliste}" Margin="60, 5"/>
-                    </BulletDecorator>
-                    <BulletDecorator>
-                        <BulletDecorator.Bullet>
-                            <Ellipse Margin="50, 5" Height="10" Width="10" Fill="Aqua"/>
-                        </BulletDecorator.Bullet>
-                        <TextBlock Text="{Binding Zutatenliste}" Margin="60, 5"/>
-                    </BulletDecorator>
-                    <BulletDecorator>
-                        <BulletDecorator.Bullet>
-                            <Ellipse Margin="50, 5" Height="10" Width="10" Fill="Aqua"/>
-                        </BulletDecorator.Bullet>
-                        <TextBlock Text="{Binding Zutatenliste}" Margin="60, 5"/>
-                    </BulletDecorator>
-                    <BulletDecorator>
-                        <BulletDecorator.Bullet>
-                            <Ellipse Margin="50, 5" Height="10" Width="10" Fill="Aqua"/>
-                        </BulletDecorator.Bullet>
-                        <TextBlock Text="{Binding Zutatenliste}" Margin="60, 5"/>
-                    </BulletDecorator>
-                    <BulletDecorator>
-                        <BulletDecorator.Bullet>
-                            <Ellipse Margin="50, 5" Height="10" Width="10" Fill="Aqua"/>
-                        </BulletDecorator.Bullet>
-                        <TextBlock Text="{Binding Zutatenliste}" Margin="60, 5"/>
-                    </BulletDecorator>
-                    <BulletDecorator>
-                        <BulletDecorator.Bullet>
-                            <Ellipse Margin="50, 5" Height="10" Width="10" Fill="Aqua"/>
-                        </BulletDecorator.Bullet>
-                        <TextBlock Text="{Binding Zutatenliste}" Margin="60, 5"/>
-                    </BulletDecorator>
-                </StackPanel>
-
-                <StackPanel Grid.Row="3" Grid.Column="1">
-                    <TextBlock Text="Hier kommt noch ein Foto"/>
-                </StackPanel>
-            </Grid>
-            <TextBlock Margin="10" FontWeight="Bold" FontSize="15" Text="Rezeptanleitung :"/>
-            <StackPanel>
-                <TextBox Text="{Binding Anleitung, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
-            </StackPanel>
+        
+        <Grid Grid.Row="4" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Margin="10,5,0,10" FontWeight="Bold" FontSize="15" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Zutaten: "/>
+            <ListBox ItemsSource="{Binding Zutaten}" Margin="10" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <BulletDecorator>
+                            <BulletDecorator.Bullet>
+                                <Ellipse Margin="5" Height="10" Width="10" Fill="Aqua"/>
+                            </BulletDecorator.Bullet>
+                            <TextBlock Text="{Binding}" Margin="60, 5"/>
+                        </BulletDecorator>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
             
-            <Button Command="{Binding SpeichernCommand}" Content="Rezept speichern" Margin="250,5"/>
-            <Button Content="Login" Command="{Binding LoginCommand}" />
+            <TextBox Margin="10" Grid.Row="2" Grid.Column="0" Text="{Binding Zutat, UpdateSourceTrigger=PropertyChanged}" />
+            <Button Margin="10" Grid.Row="2" Grid.Column="1" Content="hinzufügen" Command="{Binding ZutatHinzuCommand}" />
+        </Grid>
+        <StackPanel Grid.Row="4" Grid.Column="1">
+            <TextBlock Margin="50" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Hier kommt noch ein Foto"/>
+        </StackPanel>
 
-        </StackPanel>   
+        <TextBlock Margin="10" Grid.Row="5" FontWeight="Bold" FontSize="15" Text="Rezeptanleitung :"/>
+        <TextBox Grid.Row="6" Text="{Binding Anleitung, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
+        
+        <Button Grid.Row="7" Grid.ColumnSpan="2" Command="{Binding SpeichernCommand}" Content="Rezept speichern"/>
     </Grid>
 </views:MvxWpfView>

@@ -17,9 +17,9 @@ namespace Backrezepte.WpfApp.Views
     /// <summary>
     /// Interaktionslogik für LoggingView.xaml
     /// </summary>
-    public partial class LoggingView : MvxWpfView
+    public partial class ListView : MvxWpfView
     {
-        public LoggingView()
+        public ListView()
         {
             InitializeComponent();
         }

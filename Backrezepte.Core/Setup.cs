@@ -12,8 +12,7 @@ namespace Backrezepte.Core
     {
         public override void Initialize()
         {
-            Mvx.IoCProvider.RegisterSingleton<IRezeptDatenService>(new XmlData());
-            Mvx.IoCProvider.RegisterType<IRezeptService, RezeptService>();
+            Mvx.IoCProvider.RegisterSingleton<IRezeptService>(new XmlData());
 
             RegisterAppStart<MainViewModel>();
         }

@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace Backrezepte.Core.ViewModels
 {
-    public class LogginViewModel : MvxViewModel
+    public class ListViewModel : MvxViewModel
     {
-        private MvxNavigationService _navigationService;
-        private IRezeptDatenService _rezeptDatenService;
+        private IMvxNavigationService _navigationService;
+        private IRezeptService _rezeptDatenService;
         private MvxObservableCollection<IRezeptItem> _rezepte;
 
         public MvxObservableCollection<IRezeptItem> Rezepte
@@ -22,7 +22,7 @@ namespace Backrezepte.Core.ViewModels
             set => SetProperty(ref _rezepte, value);
         }
          
-        public LogginViewModel(MvxNavigationService navigationService, IRezeptDatenService rezeptDatenService)
+        public ListViewModel(IMvxNavigationService navigationService, IRezeptService rezeptDatenService)
         {
             this._navigationService = navigationService;
             this._rezeptDatenService = rezeptDatenService;
@@ -47,7 +47,7 @@ namespace Backrezepte.Core.ViewModels
 
             var rezepte = _rezeptDatenService.All();
 
-            Rezepte = new MvxObservableCollection<IRezeptItem>(Rezepte);
+            Rezepte = new MvxObservableCollection<IRezeptItem>(rezepte);
         }
     }
 }

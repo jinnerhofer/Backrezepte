@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace Backrezepte.Core.Services
 {
-    public class XmlData : IRezeptDatenService
+    public class XmlData : IRezeptService
     {
         private string Filename { get; set; } = "rezepte.xml";
         private string Dir { get; set; } = Directory.GetCurrentDirectory();

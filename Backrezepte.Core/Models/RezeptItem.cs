@@ -6,13 +6,14 @@ namespace Backrezepte.Core.Models
 {
     public class RezeptItem : IRezeptItem
     {
+        private List<string> _zutaten = new List<string>();
         public string RezeptId { get; set; } = Guid.NewGuid().ToString();
         public string Rezeptname { get ; set; }
         public string Rezeptanleitung { get; set; }
 
-        public List<Zutaten> All()
+        public List<string> All()
         {
-            return new List<Zutaten>();
+            return this._zutaten;
         }
     }
 }

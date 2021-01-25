@@ -14,16 +14,14 @@ namespace Backrezepte.Core.ViewModels
 {
     public class MainViewModel : MvxViewModel
     {
-        IRezeptDatenService _rezeptDatenService;
         IRezeptService _rezeptService;
 
         IMvxNavigationService _navigationService;
         private readonly IMvxLog _log;
 
-        public MainViewModel(IRezeptDatenService rezeptDatenService, IRezeptService rezeptService, IMvxLog log, IMvxNavigationService navigationService)
+        public MainViewModel(IRezeptService rezeptService, IMvxLog log, IMvxNavigationService navigationService)
         {
             
-            this._rezeptDatenService = rezeptDatenService;
             this._rezeptService = rezeptService;
             this._log = log;
             this._navigationService = navigationService;
@@ -41,7 +39,7 @@ namespace Backrezepte.Core.ViewModels
             set 
             {
                 SetProperty(ref _rezeptname, value);
-
+                SpeichernCommand.RaiseCanExecuteChanged();
             }
         
         
@@ -66,32 +64,75 @@ namespace Backrezepte.Core.ViewModels
         {
             get
             {
-                return _SpeichernCommand ?? (_SpeichernCommand = new MvxCommand(GenerateRezept));
+                return _SpeichernCommand ?? (_SpeichernCommand = new MvxCommand(
+                () =>
+                {
+                    IRezeptItem rezept = new RezeptItem();
+                    rezept.Rezeptname = this.Rezeptname;
+                    rezept.Rezeptanleitung = this.Anleitung;
+
+                    this._rezeptService.Add(rezept);
+                    this._log.Debug("Saved");
+                    
+                },
+                () =>
+                {
+                    return this.Rezeptname?.Length > 0;
+                }  
+                ));
             }
         }
 
-        private void GenerateRezept()
-        {
-            var Rezeptname = this.Rezeptname;
-        }
 
         #endregion
 
-        #region Prop: Zutatenliste
-        private List<string> _zutaten = new List<string>();
-        private string _zutat = " ";
-
-        public string Zutatenliste
-        {
-            get
-            {
-                _zutaten.Add(this._zutat);
-                return this.Zutatenliste;
-            }
-
+        #region Prop: Zutat
+        private string _zutat = "";
+        public string Zutat { 
+            get => _zutat; 
             set
             {
                 SetProperty(ref _zutat, value);
+                ZutatHinzuCommand.RaiseCanExecuteChanged();
+            }
+        }
+        #endregion
+
+        #region Command: ZutatHinzuCommand
+        private MvxCommand _zutatHinzuCommand = null;
+
+        public MvxCommand ZutatHinzuCommand
+        {
+            get
+            {
+                return _zutatHinzuCommand ?? (_zutatHinzuCommand = new MvxCommand(
+                    () => 
+                    {
+                        this.Zutaten.Add(this.Zutat);
+                        this.Zutat = "";
+                    },
+                    () => 
+                    {
+                        return this.Zutat?.Length > 0;
+                    }
+                ));
+            }
+        }
+        #endregion
+
+
+        #region Prop: Zutaten
+        private MvxObservableCollection<string> _zutaten = new MvxObservableCollection<string>();
+
+        public MvxObservableCollection<string> Zutaten
+        {
+            get
+            {
+                return this._zutaten;
+            }
+            set
+            {
+                SetProperty(ref _zutaten, value);
             }
         }
         #endregion
@@ -125,31 +166,12 @@ namespace Backrezepte.Core.ViewModels
                 return _geheZuRezepteListCommand ??
                     (_geheZuRezepteListCommand = new MvxCommand(() =>
                     {
-                        this._navigationService.Navigate<LogginViewModel>();
+                        this._navigationService.Navigate<ListViewModel>();
                     }));
             }
         }
         #endregion
 
-        #region Prop: LoginCommand
-        private MvxCommand _loginCommand = null;
-
-        public MvxCommand LoginCommand
-        {
-            get
-            {
-                return _loginCommand ?? (_loginCommand = new MvxCommand(GenerateRezept, CanGenerateRezept));
-             }
-        }
-        private bool CanGenerateRezept()
-        {
-            return this.Rezeptname?.Length > 0;
-            RezeptItem rzt = new RezeptItem();
-            rzt.Rezeptname = this.Rezeptname;
-            this._rezeptDatenService.Add(rzt);
-        }
-
-        #endregion
     }
 }
 

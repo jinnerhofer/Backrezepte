@@ -11,11 +11,7 @@ namespace Backrezepte.Core.Models
 
         string Rezeptanleitung { get; set; }
 
-        List<Zutaten> All();
+        List<string> All();
     }
 
-    public class Zutaten
-    {
-        List<Zutaten> _zutaten = new List<Zutaten>();
-    }
 }
