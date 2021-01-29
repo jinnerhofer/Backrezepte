@@ -10,11 +10,17 @@ namespace Backrezepte.Core
 {
     public class Setup : MvxApplication
     {
+        
+        
+
         public override void Initialize()
         {
-            Mvx.IoCProvider.RegisterSingleton<IRezeptService>(new SqlData());
+            Mvx.IoCProvider.RegisterType<ICheckPasswordService, CheckPasswordService>();
+            Mvx.IoCProvider.RegisterType<IDataService, DataService>();
+            Mvx.IoCProvider.RegisterType<IKontoService, KontoService>();
 
             RegisterAppStart<MainViewModel>();
+
         }
     }
 }

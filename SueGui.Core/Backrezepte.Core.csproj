@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,7 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="MvvmCross" Version="7.1.2" />
-    <PackageReference Include="sqlite-net-sqlcipher" Version="1.7.335" />
+    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="7.1.2" />
+    <PackageReference Include="Syncfusion.SfInput.WPF" Version="18.3.0.50" />
   </ItemGroup>
 
 </Project>
