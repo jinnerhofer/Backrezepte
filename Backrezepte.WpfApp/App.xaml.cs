@@ -20,7 +20,7 @@ namespace Backrezepte.WpfApp
     /// </summary>
     public partial class App : MvxApplication
     {
-        protected void RegisterSetup()
+        protected override void RegisterSetup()
         {
             this.RegisterSetupType<Backrezepte.WpfApp.Setup>();
         }
